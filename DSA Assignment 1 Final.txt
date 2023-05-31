@@ -1,0 +1,243 @@
+# Q1. Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+# You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+# You can return the answer in any order.
+
+# Example:
+# Input: nums = [2,7,11,15], target = 9
+# Output0 [0,1]
+
+# Explanation: Because nums[0] + nums[1] == 9, we return [0, 1]
+
+BRUTE FROCE APPROACH:
+res=[]
+for i in range(0,len(nums)):
+    for j in range(0,len(nums)):
+        if nums[i]+nums[j]==target and i!=j:
+            res.extend((i,j))
+            return res
+            t=1
+            break
+			
+	
+	
+OTHER
+Sum MegaPost - Python3 Solution with a detailed explanation
+
+class Solution:
+   def twoSum(self, nums: List[int], target: int) -> List[int]:
+       seen = {}
+       for i, value in enumerate(nums): #1
+           remaining = target - nums[i] #2
+           
+           if remaining in seen: #3
+               return [i, seen[remaining]]  #4
+           else:
+               seen[value] = i  #5
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Q2. Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. 
+Then return the number of elements in nums which are not equal to val.
+
+Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+
+- Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.
+- Return k.
+
+**Example :**
+Input: nums = [3,2,2,3], val = 3
+Output: 2, nums = [2,2,_*,_*]
+
+Explanation:** Your function should return k = 2, with the first two elements of nums being 2. It does not matter what you leave beyond the returned k (hence they are underscores)[
+
+
+
+Solution :
+
+def removeElement(self, nums, val):
+	for i in nums[:]:
+		if i == val:
+        nums.remove(i)
+        
+    return len(nums)
+
+
+Note : [:] will keep the copy of the original "nums" list
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#SHOWING ISSUE IN LEET CODE, ELSE EXECUTED ON OTHER COMPILERS
+
+Q3. Given a sorted array of distinct integers and a target value, 
+return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+You must write an algorithm with O(log n) runtime complexity.
+
+Example 1:
+Input: nums = [1,3,5,6], target = 5
+
+Output: 2
+
+
+Solution :
+
+class Solution(object):
+    def searchInsert(self, nums, target):
+
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        
+        for i in range(0,len(nums)):
+            if(nums[i]==target):
+                return i
+                break
+            
+            if nums[i]>target:
+                return i
+                break
+            
+--
+
+nums = [1,3,5,6]
+target = 5
+
+n = len(nums)
+
+def find_target(nums, target):
+    for i in range(0,n):
+        if(nums[i] == target):
+            return type(i)
+            break
+        
+        if(nums[i]>target):
+            return i-1
+            break
+    
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q4. You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
+
+Example 1:
+Input: digits = [1,2,3]
+Output: [1,2,4]
+
+Explanation: The array represents the integer 123.
+
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].
+
+SOLUTION:
+
+s=''
+for i in digits:
+    s+=str(i)
+
+print(s)
+
+s1 = int(s)
+s1 += 1 
+s2 = str(s1)
+
+for i in range(0,len(s2)):
+    digits[i]=int(s2[i])
+
+print(digits)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Q6. Given an integer array nums, return true if any value appears at least 
+twice in the array, and return false if every element is distinct.
+Example 1:
+Input: nums = [1,2,3,1]
+
+Output: true
+
+
+Solution : 
+
+nums = [1,2,3,1]
+
+
+def containsDuplicate(nums):
+        hset = set()
+        for i in nums:
+            if i in hset:
+                return True
+            else:
+                hset.add(i)
+                
+                
+result = containsDuplicate(nums)
+print(result)
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Q7. Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the nonzero elements.
+
+# Note that you must do this in-place without making a copy of the array.
+
+# **Example 1:**
+# Input: nums = [0,1,0,3,12]
+# Output: [1,3,12,0,0]
+
+
+def moveZeroes(self, nums):
+        
+        count=0
+        for i in nums[:]:
+            if i==0:
+                count+=1
+                nums.remove(i)
+            else:
+                continue
+        for i in range(count):
+            nums.append(0)
+			
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Q8. You have a set of integers s, which originally contains all the numbers from 1 to n. Unfortunately, due to some error, one of the numbers in s got duplicated to another number in the set, which results in repetition of one number and loss of another number.
+
+# You are given an integer array nums representing the data status of this set after the error.
+
+# Find the number that occurs twice and the number that is missing and return them in the form of an array.
+
+# Example 1:
+# Input: nums = [1,2,2,4]
+# Output: [2,3]
+
+SOLUTION:
+
+class Solution(object):
+    def findErrorNums(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        
+        lookup = Counter(nums)  # created dictionary of elements of nums
+        ans = []
+        n=len(nums)+1
+        for i in nums:
+			if lookup[i]==2:    #adding the repeated number into return list
+				ans.append(i)
+				break
+        for i in range(1,n):
+			if i not in lookup: #adding the number which is being replaced into return list
+				ans.append(i)
+				return ans
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

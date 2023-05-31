@@ -22,19 +22,7 @@ for i in range(0,len(nums)):
 			
 	
 	
-OTHER
-Sum MegaPost - Python3 Solution with a detailed explanation
 
-class Solution:
-   def twoSum(self, nums: List[int], target: int) -> List[int]:
-       seen = {}
-       for i, value in enumerate(nums): #1
-           remaining = target - nums[i] #2
-           
-           if remaining in seen: #3
-               return [i, seen[remaining]]  #4
-           else:
-               seen[value] = i  #5
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -68,7 +56,6 @@ Note : [:] will keep the copy of the original "nums" list
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#SHOWING ISSUE IN LEET CODE, ELSE EXECUTED ON OTHER COMPILERS
 
 Q3. Given a sorted array of distinct integers and a target value, 
 return the index if the target is found. If not, return the index where it would be if it were inserted in order.

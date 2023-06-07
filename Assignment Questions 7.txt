@@ -1,0 +1,209 @@
+
+
+
+
+# Question 1
+
+# Given two strings s and t, *determine if they are isomorphic*.
+# Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+# All occurrences of a character must be replaced with another character while preserving the order of characters. 
+# No two characters may map to the same character, but a character may map to itself.
+
+# Example 1:**
+# Input: s = "egg", t = "add"
+# Output: true
+
+s = "egg"
+t = "add"
+
+lis1=[]
+lis2=[]
+
+for i in s:
+    lis1.append(s.index(i))
+    
+for j in t:
+    lis2.append(t.index(j))
+
+if lis1==lis2:
+    print("Is Isomorphic")
+    
+    
+else:
+    print("Not Isomorphic")
+    
+    
+	
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+# Question 2
+
+# Given a string num which represents an integer, return true *if* num *is a strobogrammatic number.
+# A **strobogrammatic number** is a number that looks the same when rotated 180 degrees (looked at upside down).
+
+# Example 1:**
+# Input:** num = "69"
+# Output:**
+# true
+
+num = "69"
+
+set1 = {(6,9),(9,6),(0,0),(1,1),(8,8)}
+
+i = 0 
+j = len(num)-1
+
+while(i<j):
+    if (num[i],num[j]) not in set1:
+        return False
+    i+=1 
+    j-=1 
+return True 
+    
+        
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Question 3**
+
+# Given two non-negative integers, num1 and num2 represented as string, return *the sum of* num1 *and* num2 *as a string*.
+# You must solve the problem without using any built-in library for handling large integers (such as BigInteger). 
+# You must also not convert the inputs to integers directly.
+
+# Example 1:**
+
+# Input:** num1 = "11", num2 = "123"
+
+# Output:
+# "134"
+
+num1 = "11"
+num2 = "123"
+
+
+def str_to_int(num):
+    dict1 = {'0':0, '1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9}
+    new_num = 0
+    for i in num:
+        new_num = new_num * 10 + dict1[i]
+    return new_num
+        
+res = str_to_int(num1) + str_to_int(num2)
+print(str(res))
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+# Question 4
+
+# Given a string s, reverse the order of characters in each word within a sentence while 
+# still preserving whitespace and initial word order.
+
+# Example 1:
+
+# Input: s = "Let's take LeetCode contest"
+# Output: "s'teL ekat edoCteeL tsetnoc"
+
+
+
+s = "Let's take LeetCode contest"
+
+list1 = list(s.split(" "))
+lis2 = []
+for i in list1:
+    lis2.append(i[::-1])
+    
+    
+s1=""
+for i in lis2:
+    s1+=' '+i 
+    
+
+print(s1)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Question 6
+
+# Given two strings s and goal, return true *if and only if* s *can become* goal *after some number of **shifts** on* s.
+
+# A shift on s consists of moving the leftmost character of s to the rightmost position.
+
+# - For example, if s = "abcde", then it will be "bcdea" after one shift.
+
+# Example 1:**
+
+# Input: s = "abcde", goal = "cdeab"
+# Output: true
+
+
+class Solution(object):
+    def rotateString(self, s, goal):
+        """
+        :type s: str
+        :type goal: str
+        :rtype: bool
+        """
+        if len(s)==len(goal):
+            if s in goal + goal:
+                return True
+            else:
+                return False
+        
+        else:
+            return False
+        
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Question 8
+
+# You are given an array coordinates, coordinates[i] = [x, y], where [x, y] represents the coordinate of a point. Check if these points make a straight line in the XY plane.
+
+# Example 1:
+
+# Input: coordinates = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]]
+
+# Output: true
+
+coordinates = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]]
+
+def are_collinear(coordinates):
+    a,b = coordinates[0]  
+    for i in range(1,len(coordinates)-1):
+        if ((coordinates[i+1][1]-b) * (coordinates[i][0]-a) == (coordinates[i][1]-b) * (coordinates[i+1][0]-a)):
+            continue
+        
+        else:
+            return False
+                
+    return True 
+    
+print(are_collinear(coordinates))
+    
+	
+	
+
+------------------------------------------------------------------------------------------------------------------------------------------
